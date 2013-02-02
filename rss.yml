@@ -1,0 +1,22 @@
+# mcRSS - Ingame RSS Reader
+# Configuration File - FEEDS
+# Maxim Van de Wynckel
+# ---------------------------
+
+feeds:
+    forum:
+        title: Minecraft Forum - News
+        url: http://www.minecraftforum.net/rss/writ/1-news/
+        enabled: true
+    news:
+        title: The Times - News
+        url: http://www.thetimes.co.uk/tto/news/rss
+        enabled: true
+    bukkit:
+        title: Bukkit.org - Forum
+        url: http://bukkit.org/forums/-/index.rss
+        enabled: true
+    mojang:
+        title: Mojang
+        url: www.mojang.com/feed
+        enabled: true

@@ -1,0 +1,101 @@
+name: mcRSS
+main: VdW.Maxim.mcRSS.mcRSS
+version: 1.3.0
+website: http://dev.bukkit.org/server-mods/mcrss/
+author: Maximvdw
+description: Ingame RSS reader
+commands:
+  mcrss:
+    description: Utilize the plugin
+  rss:
+    description: Utilize the plugin
+
+permissions:
+    mcrss.*:
+        description: Gives access to all mcRSS commands
+        default: op
+        children:
+            mcrss.rss.*: true
+            mcrss.about: true
+            mcrss.reload: true
+    mcrss.rss.*:
+        description: Gives access to all mcRSS rss commands
+        default: op
+        children:
+            mcrss.rss.help: true
+            mcrss.rss.read: true
+            mcrss.rss.send: true
+            mcrss.rss.broadcast: true
+            mcrss.rss.cache: true
+            mcrss.rss.params: true
+            mcrss.rss.list: true
+            mcrss.rss.book: true
+            mcrss.rss.add: true
+            mcrss.rss.remove: true
+    mcrss.help:
+        description: Allows a user to see the help menu
+        default: true
+    mcrss.rss.add:
+        description: Allows a user to add RSS Feeds
+        default: op
+    mcrss.rss.remove:
+        description: Allows a user to remove RSS Feeds
+        default: op
+    mcrss.rss.help:
+        description: Allows a user to see the help menu of rss commands
+        default: op
+    mcrss.rss.read:
+        description: Allows the user to read all topics in a rss
+        default: op
+    mcrss.rss.send:
+        description: Allows the user to send a topic(s) in private message
+        default: op
+    mcrss.rss.book:
+        description: Allows the user to get a book with RSS text
+        default: op
+    mcrss.rss.broacast:
+        description: Allows the user to broadcast a topic(s) to everyone
+        default: op
+    mcrss.rss.cache:
+        description: Allows the user to force cache all topics
+        default: op
+    mcrss.rss.list:
+        description: Allows you to see all available feeds
+        default: op
+    mcrss.rss.params:
+        description: Allows you to see all available parameters
+        default: op
+    mcrss.reload:
+        description: Allows the user to reload the plugin
+        default: op
+    mcrss.about:
+        description: Allows the user to see information about the plugin
+        default: true
+    mcrss.user:
+        description: Gives access to all user commands
+        default: op
+        children:
+            mcrss.rss.help: true
+            mcrss.rss.read: true
+            mcrss.rss.params: true
+            mcrss.rss.list: true
+            mcrss.rss.book: true
+            mcrss.help: true
+            mcrss.about: true
+    mcrss.mod:
+        description: Gives access to all moderator commands
+        default: op
+        children:
+            mcrss.rss.help: true
+            mcrss.rss.read: true
+            mcrss.rss.send: true
+            mcrss.rss.book: true
+            mcrss.rss.params: true
+            mcrss.rss.list: true
+            mcrss.help: true
+            mcrss.about: true
+    mcrss.admin:
+        description: Gives access to all administrator commands
+        default: op
+        children:
+            mcrss.*: true

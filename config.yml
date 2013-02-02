@@ -1,0 +1,20 @@
+# mcRSS - Ingame RSS Reader
+# Configuration File
+# Maxim Van de Wynckel
+# ---------------------------
+
+# This Enables/Disables the plugin loading
+enabled: true
+
+# Caching time
+# Default = 5 Minutes = 300 SECONDS
+cache_time: 1200
+
+# Post count
+# Posts shown when reading a feed
+post_count: 5
+
+
+# Configuration file Version
+# Used by plugin! DO NOT DELETE
+version: 3
