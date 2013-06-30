@@ -14,7 +14,10 @@ cache_time: 1200
 # Posts shown when reading a feed
 post_count: 5
 
+# Economy price
+enableEconomy: false
+price: 0
 
 # Configuration file Version
 # Used by plugin! DO NOT DELETE
-version: 3
+version: 4

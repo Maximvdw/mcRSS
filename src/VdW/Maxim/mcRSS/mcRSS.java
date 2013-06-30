@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import net.milkbowl.vault.economy.Economy;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -25,6 +27,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -42,6 +45,9 @@ public class mcRSS extends JavaPlugin {
 	public final listener pl = new listener(this);
 	public boolean[] FirstCache;
 	public String[] changes;
+	public boolean economyFound = false;
+	// Vault variables
+    public Economy econ = null;
 
 	// Global Variable feeds
 	public static String[][] feeds;
@@ -162,6 +168,16 @@ public class mcRSS extends JavaPlugin {
 			// Failed to submit the stats :-(
 		}
 		this.logger.info(cmdFormat + "Metrics Stats loaded!");
+
+		// Check for vault hook
+		if (!setupEconomy()) {
+			economyFound = false;
+			this.logger.info(cmdFormat
+					+ "No economy system found! Disabling feature...");
+		} else {
+			economyFound = true;
+			this.logger.info(cmdFormat + "Economy system found!");
+		}
 
 		// Finally
 		this.logger.info(cmdFormat + pdfFile.getName() + " "
@@ -604,10 +620,12 @@ public class mcRSS extends JavaPlugin {
 												|| playerlist[j]
 														.hasPermission("mcrss.rss.notify."
 																+ feeds[i][1])) {
-											// Player has permissions to get notified
-											playerlist[j].sendMessage(chatColor
-											.stringtodata(warning_changes
-													+ feeds[i][1]));
+											// Player has permissions to get
+											// notified
+											playerlist[j]
+													.sendMessage(chatColor
+															.stringtodata(warning_changes
+																	+ feeds[i][1]));
 										}
 									}
 								}
@@ -664,5 +682,19 @@ public class mcRSS extends JavaPlugin {
 			logger.severe("[" + pdfFile.getName() + "] " + "ERROR: "
 					+ e.getLocalizedMessage());
 		}
+	}
+
+	// Economy
+	private boolean setupEconomy() {
+		if (getServer().getPluginManager().getPlugin("Vault") == null) {
+			return false;
+		}
+		RegisteredServiceProvider<Economy> rsp = getServer()
+				.getServicesManager().getRegistration(Economy.class);
+		if (rsp == null) {
+			return false;
+		}
+		econ = rsp.getProvider();
+		return econ != null;
 	}
 }
